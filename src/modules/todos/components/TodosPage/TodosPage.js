@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 
 import { addTodo } from "../../todos.actions";
@@ -9,6 +9,16 @@ import "./TodosPage.scss";
 const TodosPage = ({ todos, addTodo }) => {
   const inputRef = useRef(null);
   const [todo, setTodo] = useState("");
+
+  useEffect(() => {
+    document.title = `Bienvenus`;
+  }, []);
+
+  useEffect(() => {
+    if (todo.length > 0) {
+      document.title = `Vous avez ajouté ${todo}`;
+    }
+  }, [todo]);
 
   const onAdd = () => {
     if (todo.length > 0) {
